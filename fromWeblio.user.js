@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name        fromWeblio
 // @namespace   towords.com
+// @description replace toWords's content to that from Weblio (Japanese)
 // @include     http://www.towords.com/
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js
 // @author      dingye
-// @version     1
+// @version     0.01
 // ==/UserScript==
 function fromWeblio() {
     if (fw_mutex == 1){
