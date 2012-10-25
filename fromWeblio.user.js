@@ -32,14 +32,29 @@ function(){
             fw_mutex = 0;
             var word = $('#wordInfo div:eq(0) span').text();
 
-            GM_xmlhttpRequest({
+            var query = function() {
+                GM_xmlhttpRequest({
                 url: "http://ejje.weblio.jp/content/" + word,
                 method: 'GET',
-                onload:function(response){
-                    $("#wordInfo div:eq(2)").html(formatWeblio(response.responseText));
-                    fw_mutex = 1;
-                }
-            });
+                onload: function(response) {
+                        $("#wordInfo div:eq(2)").html(formatWeblio(response.responseText));
+                        fw_mutex = 1;
+                    },
+                onabort:function(response){
+                        alert('The Request Aborted');
+                        fw_mutex = 1;
+                    },
+                onerror:function(response){
+                        alert('Some Error Occured');
+                        fw_mutex = 1;
+                    },
+                ontimeout:function(response){
+                        query();
+                    },
+                });
+            };
+
+            query();
         }
     }
 
